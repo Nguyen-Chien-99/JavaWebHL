@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách tài khoản NVC</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Danh sách tài khoản NVC</h2>
+    <a href="/NVC_account/create" class="btn btn-success mb-3">Tạo tài khoản mới</a>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Tên người dùng</th>
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Điện thoại</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="account : ${accounts}">
+            <td th:text="${account.id}"></td>
+            <td th:text="${account.user}"></td>
+            <td th:text="${account.name}"></td>
+            <td th:text="${account.email}"></td>
+            <td th:text="${account.phone}"></td>
+            <td th:text="${account.status == true ? 'Kích hoạt' : 'Không kích hoạt'}"></td>
+            <td>
+                <a th:href="@{/NVC_account/edit/{id}(id=${account.id})}" class="btn btn-primary">Chỉnh sửa</a>
+                <a th:href="@{/NVC_account/delete/{id}(id=${account.id})}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
